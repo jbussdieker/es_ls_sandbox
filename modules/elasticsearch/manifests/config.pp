@@ -1,20 +1,20 @@
 class elasticsearch::config inherits elasticsearch {
 
-  file {'/etc/default/elasticsearch':
+  file {"${default_dir}/elasticsearch":
     owner   => 'root',
     group   => 'root',
     mode    => 0644,
     content => template("elasticsearch/default.erb"),
   }
 
-  file {'/etc/elasticsearch/elasticsearch.yml':
+  file {"${conf_dir}/elasticsearch.yml":
     owner   => 'root',
     group   => 'root',
     mode    => 0644,
     content => $config,
   }
 
-  file {'/etc/elasticsearch/logging.yml':
+  file {"${conf_dir}/logging.yml":
     owner   => 'root',
     group   => 'root',
     mode    => 0644,
