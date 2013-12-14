@@ -7,6 +7,7 @@ define logstash::conf($content = "") {
     mode    => 0644,
     content => $content,
     notify  => Class['logstash::service'],
+    require => Class['logstash::package'],
   }
 
 }
