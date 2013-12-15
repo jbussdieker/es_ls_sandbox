@@ -5,7 +5,8 @@ define elasticsearch::plugin() {
   exec {"elasticsearch_plugin_${short_name}":
     command => "${elasticsearch::params::source_dir}/bin/plugin --install ${name}",
     creates => "${elasticsearch::params::source_dir}/plugins/${short_name}",
-    require => Class["elasticsearch::package"],
+    notify  => Class['elasticsearch::service'],
+    require => Class["elasticsearch::config"],
   }
 
 }
